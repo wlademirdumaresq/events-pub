@@ -5,9 +5,9 @@ TODO
 
 ***
 ## Sumário
-1. [Resumo](#resumo)
-2. [Requisitos](#requisitos)
-3. [Configuraçao](#configuracao)
+1. [Resumo](#1---resumo)
+2. [Requisitos](#2---requisitos)
+3. [Configuraçao](#3---configuração)
 
 ***
 ## 1 - Resumo:
