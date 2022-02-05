@@ -4,5 +4,9 @@
   "port": "5432",
   "username": "docker",
   "password": "api",
-  "database": "api"
+  "database": "api",
+  "migrations": ["./src/database/migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
 }
