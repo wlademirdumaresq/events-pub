@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 
 import { UsersRepository } from "../modules/accounts/repositories/implementations/UsersRepository";
+import { AppError } from "../errors/AppError";
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export async function ensureAuthenticated(
@@ -12,7 +13,7 @@ export async function ensureAuthenticated(
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
-    throw new Error("Token missing");
+    throw new AppError("Token missing");
   }
 
   const [, token] = authHeader.split(" ");
@@ -24,7 +25,7 @@ export async function ensureAuthenticated(
     const user = await usersRepository.findById(session.sub);
 
     if (!user) {
-      throw new Error("User does not exists");
+      throw new AppError("User does not exists");
     }
 
     request.body.user_token = {
@@ -40,6 +41,6 @@ export async function ensureAuthenticated(
     };
     next();
   } catch {
-    throw new Error("Invalid token!");
+    throw new AppError("Invalid token!");
   }
 }

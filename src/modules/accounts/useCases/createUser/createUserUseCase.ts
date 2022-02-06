@@ -3,6 +3,7 @@ import { inject, injectable } from "tsyringe";
 
 import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
+import { AppError } from "../../../../errors/AppError";
 
 @injectable()
 class CreateUserUseCase {
@@ -24,9 +25,9 @@ class CreateUserUseCase {
     );
 
     if (emailAlreadyExists) {
-      throw new Error("Users already exists");
+      throw new AppError("Users already exists");
     } else if (usernameAlreadyExists) {
-      throw new Error("Users already exists");
+      throw new AppError("Users already exists");
     }
 
     const passwordHash = await hash(password, 8);

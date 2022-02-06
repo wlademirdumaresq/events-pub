@@ -3,6 +3,7 @@ import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
 
 import { IUsersRepository } from "../../repositories/IUsersRepository";
+import { AppError } from "../../../../errors/AppError";
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 interface IRequest {
@@ -38,17 +39,17 @@ class AuthenticateUserUseCase {
     } else if (username && username !== "") {
       user = await this.usersRepository.findByUsername(username);
     } else {
-      throw new Error("Login obrigatory");
+      throw new AppError("Login obrigatory");
     }
 
     if (!user) {
-      throw new Error("Login or Password incorrect");
+      throw new AppError("Login or Password incorrect");
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new Error("Login or Password incorrect");
+      throw new AppError("Login or Password incorrect");
     }
 
     const token = sign({}, "0cb6aaaeae511c4a0cab75d7e489dda4", {
