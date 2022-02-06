@@ -24,13 +24,19 @@ class UsersRepository implements IUsersRepository {
   }
 
   async findByEmail(email): Promise<User> {
-    const user = await this.repository.findOne({ email });
+    const user = await this.repository.findOne({ email, active: true });
 
     return user;
   }
 
   async findByUsername(username): Promise<User> {
-    const user = await this.repository.findOne({ username });
+    const user = await this.repository.findOne({ username, active: true });
+
+    return user;
+  }
+
+  async findById(id): Promise<User> {
+    const user = await this.repository.findOne({ id, active: true });
 
     return user;
   }
