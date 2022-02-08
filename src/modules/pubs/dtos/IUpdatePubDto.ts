@@ -3,10 +3,6 @@ interface IUpdatePubDTO {
     name?: string;
   
     description?: string;
-  
-    latitude?: string,
-  
-    longitude?: string;
   }
   
   export { IUpdatePubDTO };

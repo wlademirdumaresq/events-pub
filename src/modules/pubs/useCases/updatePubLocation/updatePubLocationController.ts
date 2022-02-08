@@ -9,10 +9,12 @@ class UpdatePubLocationController {
     const { latitude, longitude } = request.body;
     const {... search } = request.params;
     const id: string = search.id as string;
+
+    const user_id = request.body.user_token.user.id;
     
     const updatePubLocationUseCase = container.resolve(UpdatePubLocationUseCase);
 
-    const updated_pub = await updatePubLocationUseCase.execute(id, { latitude, longitude });
+    const updated_pub = await updatePubLocationUseCase.execute(id, user_id, { latitude, longitude });
     
     return response.status(200).send(updated_pub);
   }

@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn, CreateDateColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, CreateDateColumn} from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
 @Entity("pubs")
@@ -14,6 +14,9 @@ class Pub {
 
   @Column()
   location: string;
+
+  @Column()
+  user_id: string;
 
   @Column()
   active: boolean;

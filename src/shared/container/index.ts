@@ -11,4 +11,7 @@ container.registerSingleton<IUsersRepository>(
   UsersRepository
 );
 
-container.registerSingleton<IPubsRepository>("PubsRepository", PubsRepository);
+container.registerSingleton<IPubsRepository>(
+  "PubsRepository", 
+  PubsRepository
+);

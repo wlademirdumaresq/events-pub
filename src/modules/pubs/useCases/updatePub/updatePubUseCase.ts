@@ -12,13 +12,10 @@ class UpdatePubUseCase {
     private pubsRepository: IPubsRepository
   ) {}
 
-  async execute(id: string, 
-    { name,
-      description,
-      latitude,
-      longitude}: IUpdatePubDTO): Promise<UpdateResult> {
+  async execute(id: string, user_id: string, 
+    { name, description }: IUpdatePubDTO): Promise<UpdateResult> {
         
-    const updated_pub = await this.pubsRepository.update(id, { name, description, latitude, longitude });
+    const updated_pub = await this.pubsRepository.update(id, user_id, { name, description });
 
     return updated_pub;
   }

@@ -2,6 +2,8 @@ import { Router } from "express";
 import multer from "multer";
 import "reflect-metadata";
 
+import { pubAuthenticate } from "../middlewares/pubAuthenticate";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 import { CreatePubController } from "../modules/pubs/useCases/createPub/createPubController";
 import { FindPubByIdController } from "../modules/pubs/useCases/findPubById/findPubByIdController";
 import { FindPubsController } from "../modules/pubs/useCases/findPubs/findPubsController";
@@ -22,16 +24,16 @@ const updatePubController = new UpdatePubController();
 const updatePubLocationController = new UpdatePubLocationController();
 const deletePubController = new DeletePubController();
 
-pubsRoutes.post("/", createPubController.create);
+pubsRoutes.post("/", ensureAuthenticated, pubAuthenticate, createPubController.create);
 
-pubsRoutes.get("/", findPubsController.handle);
+pubsRoutes.get("/", ensureAuthenticated, findPubsController.handle);
 
-pubsRoutes.get('/:id', findPubByIdController.handle);
+pubsRoutes.get('/:id', ensureAuthenticated, findPubByIdController.handle);
 
-pubsRoutes.put('/:id', updatePubController.handle);
+pubsRoutes.put('/:id', ensureAuthenticated, pubAuthenticate, updatePubController.handle);
 
-pubsRoutes.put('/:id/location', updatePubLocationController.handle);
+pubsRoutes.put('/:id/location', ensureAuthenticated, pubAuthenticate, updatePubLocationController.handle);
 
-pubsRoutes.delete('/:id', deletePubController.handle);
+pubsRoutes.delete('/:id', ensureAuthenticated, pubAuthenticate, deletePubController.handle);
 
 export { pubsRoutes };

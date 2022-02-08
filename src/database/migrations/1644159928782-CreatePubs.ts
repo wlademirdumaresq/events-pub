@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
 
 export class CreatePubs1644159928782 implements MigrationInterface {
 
@@ -29,6 +29,10 @@ export class CreatePubs1644159928782 implements MigrationInterface {
                         srid: 4326
                     },
                     {
+                        name: "user_id",
+                        type: "uuid",
+                    },
+                    {
                         name: "active",
                         type: "boolean",
                         default: true,
@@ -39,6 +43,15 @@ export class CreatePubs1644159928782 implements MigrationInterface {
                         default: "now()",
                     },
                 ]
+            })
+        );
+
+        await queryRunner.createForeignKey(
+            'pubs',
+            new TableForeignKey({
+                columnNames: ['user_id'],
+                referencedTableName: 'users',
+                referencedColumnNames: ['id']
             })
         );
     }

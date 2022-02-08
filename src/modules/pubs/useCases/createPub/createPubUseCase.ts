@@ -11,13 +11,13 @@ class CreatePubUseCase {
     private pubsRepository: IPubsRepository
   ) {}
 
-  async create({
+  async create(user_id: string,{
     name,
     description,
     latitude,
     longitude
   }: ICreatePubDTO): Promise<void> {
-    await this.pubsRepository.create({ name, description, latitude, longitude });
+    await this.pubsRepository.create(user_id, { name, description, latitude, longitude });
   }
 
   async findById(id: string): Promise<Pub> {
