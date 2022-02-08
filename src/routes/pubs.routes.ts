@@ -24,16 +24,36 @@ const updatePubController = new UpdatePubController();
 const updatePubLocationController = new UpdatePubLocationController();
 const deletePubController = new DeletePubController();
 
-pubsRoutes.post("/", ensureAuthenticated, pubAuthenticate, createPubController.create);
+pubsRoutes.post(
+  "/",
+  ensureAuthenticated,
+  pubAuthenticate,
+  createPubController.create
+);
 
 pubsRoutes.get("/", ensureAuthenticated, findPubsController.handle);
 
-pubsRoutes.get('/:id', ensureAuthenticated, findPubByIdController.handle);
+pubsRoutes.get("/:id", ensureAuthenticated, findPubByIdController.handle);
 
-pubsRoutes.put('/:id', ensureAuthenticated, pubAuthenticate, updatePubController.handle);
+pubsRoutes.put(
+  "/:id",
+  ensureAuthenticated,
+  pubAuthenticate,
+  updatePubController.handle
+);
 
-pubsRoutes.put('/:id/location', ensureAuthenticated, pubAuthenticate, updatePubLocationController.handle);
+pubsRoutes.put(
+  "/:id/location",
+  ensureAuthenticated,
+  pubAuthenticate,
+  updatePubLocationController.handle
+);
 
-pubsRoutes.delete('/:id', ensureAuthenticated, pubAuthenticate, deletePubController.handle);
+pubsRoutes.delete(
+  "/:id",
+  ensureAuthenticated,
+  pubAuthenticate,
+  deletePubController.handle
+);
 
 export { pubsRoutes };

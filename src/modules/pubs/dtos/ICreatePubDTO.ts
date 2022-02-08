@@ -4,7 +4,7 @@ interface ICreatePubDTO {
 
   description: string;
 
-  latitude: string,
+  latitude: string;
 
   longitude: string;
 }

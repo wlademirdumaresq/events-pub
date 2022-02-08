@@ -15,7 +15,6 @@ class FindPubByIdUseCase {
 
     return pub;
   }
-
 }
 
 export { FindPubByIdUseCase };

@@ -12,7 +12,6 @@ class DeletePubUseCase {
   async execute(id: string, user_id: string): Promise<void> {
     await this.pubsRepository.delete(id, user_id);
   }
-
 }
 
 export { DeletePubUseCase };

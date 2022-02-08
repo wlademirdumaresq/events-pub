@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn, CreateDateColumn} from "typeorm";
+import { Entity, Column, PrimaryColumn, CreateDateColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
 @Entity("pubs")

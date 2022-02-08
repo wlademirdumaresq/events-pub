@@ -11,10 +11,14 @@ class CreatePubController {
 
     const createPubUseCase = container.resolve(CreatePubUseCase);
 
-    await createPubUseCase.create(user_id, { name, description, latitude, longitude });
+    await createPubUseCase.create(user_id, {
+      name,
+      description,
+      latitude,
+      longitude,
+    });
     return response.status(201).send();
   }
-  
 }
 
 export { CreatePubController };

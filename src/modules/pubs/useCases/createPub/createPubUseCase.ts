@@ -11,13 +11,16 @@ class CreatePubUseCase {
     private pubsRepository: IPubsRepository
   ) {}
 
-  async create(user_id: string,{
-    name,
-    description,
-    latitude,
-    longitude
-  }: ICreatePubDTO): Promise<void> {
-    await this.pubsRepository.create(user_id, { name, description, latitude, longitude });
+  async create(
+    user_id: string,
+    { name, description, latitude, longitude }: ICreatePubDTO
+  ): Promise<void> {
+    await this.pubsRepository.create(user_id, {
+      name,
+      description,
+      latitude,
+      longitude,
+    });
   }
 
   async findById(id: string): Promise<Pub> {
@@ -37,7 +40,6 @@ class CreatePubUseCase {
 
     return pubs;
   }
-
 }
 
 export { CreatePubUseCase };
