@@ -2,11 +2,11 @@ version: "3.7"
 
 services:
   database_api:
-    image: posgis/postgis
+    image: postgis/postgis
     container_name: database_api
     restart: always
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=api
