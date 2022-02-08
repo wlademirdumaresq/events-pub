@@ -30,6 +30,7 @@ class CreatePubController {
     
     return response.status(200).send(pub);
   }
+  
 }
 
 export { CreatePubController };

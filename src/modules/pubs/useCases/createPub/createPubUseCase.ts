@@ -20,6 +20,12 @@ class CreatePubUseCase {
     await this.pubsRepository.create({ name, description, latitude, longitude });
   }
 
+  async findById(id: string): Promise<Pub> {
+    const pub = await this.pubsRepository.findById(id);
+
+    return pub;
+  }
+
   async findByName(name: string): Promise<Pub> {
     const pub = await this.pubsRepository.findByName(name);
 
