@@ -1,5 +1,6 @@
 import { getRepository, Repository, UpdateResult } from "typeorm";
 
+import axios from "axios";
 import { ICreatePubDTO } from "../../dtos/ICreatePubDTO";
 import { IUpdatePubLocationDTO } from "../../dtos/IUpdatedPubLocationDTO";
 import { IUpdatePubDTO } from "../../dtos/IUpdatePubDto";
@@ -15,12 +16,12 @@ class PubsRepository implements IPubsRepository {
 
   async create(
     user_id: string,
-    { name, description, latitude, longitude }: ICreatePubDTO
+    { name, description, latitude, longitude, cep, number }: ICreatePubDTO
   ): Promise<void> {
     await this.repository.query(
-      "INSERT INTO pubs (name, description, location, user_id)" +
-        "VALUES ($1, $2, ST_SetSRID(ST_MakePoint($3, $4), 4326), $5)",
-      [name, description, latitude, longitude, user_id]
+      "INSERT INTO pubs (name, description, location, user_id, cep , number)" +
+        "VALUES ($1, $2, ST_SetSRID(ST_MakePoint($3, $4), 4326), $5, $6,$7)",
+      [name, description, latitude, longitude, user_id, cep, number]
     );
 
     return Promise.resolve(undefined);
@@ -28,6 +29,16 @@ class PubsRepository implements IPubsRepository {
 
   async findById(id: string): Promise<Pub> {
     const pub = await this.repository.findOne({ id, active: true });
+    const address = await axios
+      .get(`https://viacep.com.br/ws/${pub.cep}/json/`)
+      .then((res: any) => {
+        return res.data;
+      })
+      .catch((err: any) => {
+        return null;
+      });
+
+    pub.address = address;
 
     return pub;
   }

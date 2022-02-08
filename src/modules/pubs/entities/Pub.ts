@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Entity, Column, PrimaryColumn, CreateDateColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
@@ -19,10 +20,18 @@ class Pub {
   user_id: string;
 
   @Column()
+  cep?: string;
+
+  @Column()
+  number?: string;
+
+  @Column()
   active: boolean;
 
   @CreateDateColumn()
   created_at: Date;
+
+  address?: object;
 
   constructor() {
     if (!this.id) {

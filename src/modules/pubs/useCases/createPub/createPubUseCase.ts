@@ -13,24 +13,20 @@ class CreatePubUseCase {
 
   async create(
     user_id: string,
-    { name, description, latitude, longitude }: ICreatePubDTO
+    { name, description, latitude, longitude, cep, number }: ICreatePubDTO
   ): Promise<void> {
     await this.pubsRepository.create(user_id, {
       name,
       description,
       latitude,
       longitude,
+      cep,
+      number,
     });
   }
 
   async findById(id: string): Promise<Pub> {
     const pub = await this.pubsRepository.findById(id);
-
-    return pub;
-  }
-
-  async findByName(name: string): Promise<Pub> {
-    const pub = await this.pubsRepository.findByName(name);
 
     return pub;
   }

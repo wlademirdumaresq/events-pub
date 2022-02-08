@@ -5,7 +5,8 @@ import { CreatePubUseCase } from "./createPubUseCase";
 
 class CreatePubController {
   async create(request: Request, response: Response): Promise<Response> {
-    const { name, description, latitude, longitude } = request.body;
+    const { name, description, latitude, longitude, cep, number } =
+      request.body;
 
     const user_id = request.body.user_token.user.id;
 
@@ -16,6 +17,8 @@ class CreatePubController {
       description,
       latitude,
       longitude,
+      cep,
+      number,
     });
     return response.status(201).send();
   }

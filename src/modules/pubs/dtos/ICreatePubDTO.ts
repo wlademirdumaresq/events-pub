@@ -4,6 +4,10 @@ interface ICreatePubDTO {
 
   description: string;
 
+  cep?: string;
+
+  number?: string;
+
   latitude: string;
 
   longitude: string;
